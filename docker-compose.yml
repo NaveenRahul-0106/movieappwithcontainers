@@ -1,0 +1,29 @@
+version: "3"
+services:
+  client:
+    image: naveenrahul0106/upmovieclient
+    ports:
+      - 8000:8000
+    networks:
+      - mine
+  server:
+    image: naveenrahul0106/upmovieserver
+    ports:
+      - 3000:3000
+      - 27017
+    depends_on:
+      - mongo
+    networks:
+      - mine
+  mongo:
+    image: mongo:3.6.19-xenial
+    ports:
+      - 27017:27017
+    networks:
+      - mine
+
+networks:
+  mine:
+    driver: bridge
+    
+
